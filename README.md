@@ -1,29 +1,66 @@
-This file gives a summary of all the individual code files and how to execute them.
+# Network Traffic Analysis Project
 
-input.csv - This is the dataset file from which the python script gets the input. This file is not included in the submission due to its massive size but it can be downloaded here. https://csr.lanl.gov/data-fence/1622617257/-0SFtafWP_yNOBqLkD0m8LmmTbs=/unified-host-network-dataset-2017/netflow/netflow_day-02.bz2
+This repository contains scripts for analyzing network traffic data using various sampling techniques with PySpark and a Streamlit-based GUI. Below is a summary of the files and instructions on how to execute them.
 
-GUI code:
+## Dataset
 
-proj.py - This is the main file which needs to be executed as follows: 
-streamlit run proj.py
-This will open a new tab in your default browser. After executing the code you should monitor the terminal and once the message "Ready to Recieve" appears input.py file should be executed.
+The dataset used in this project is not included due to its large size. It can be downloaded from the following link:
 
-input.py - Python script that reads csv file containing dataset. It can be executed as follows:
-python input.py
+[NetFlow Dataset - Day 2 (LANL Unified Host and Network Dataset 2017)](https://csr.lanl.gov/data-fence/1622617257/-0SFtafWP_yNOBqLkD0m8LmmTbs=/unified-host-network-dataset-2017/netflow/netflow_day-02.bz2)
 
-Load shedding techniques:
-Note: All these codes should be executed along with input.py code similar to proj.py code.
+Save the extracted CSV file as `input.csv` in the project directory.
 
-proj_uniform.py - Pyspark script with uniform sampling implemented. It can be executed as follows:
-spark-submit proj_uniform.py
-Note: This script does not have a GUI to display instead it outputs the results on the terminal
+---
 
-proj_random.py -  Pyspark script with random sampling implemented. It can be executed as follows:
-spark-submit proj_random.py
-Note: This script does not have a GUI to display instead it outputs the results on the terminal
+## File Descriptions & Execution
 
-Static result:
+### 📊 GUI Code
 
-static.py - Pyspark script to get results of static data. It can be executed as follows:
-spark-submit static.py
+#### `proj.py`
+- **Description**: Main script to launch the GUI using Streamlit.
+- **Execution**:
+  1. Run `streamlit run proj.py`.
+  2. This will open a new tab in your default browser.
+  3. Once the terminal shows the message `Ready to Recieve`, execute `input.py`.
 
+#### `input.py`
+- **Description**: Reads the `input.csv` dataset and feeds it to the processing pipeline.
+- **Execution**: 
+  1. Run `python input.py` to start processing the input data.
+
+---
+
+## ⚙️ Load Shedding Techniques
+
+> **Note**: These scripts must be run **in parallel** with `input.py`, similar to `proj.py`.
+
+#### `proj_uniform.py`
+- **Description**: PySpark script implementing **uniform sampling**.
+- **Execution**: 
+  1. Run `spark-submit proj_uniform.py`.
+  2. This script does not have a GUI and will output the results directly to the terminal.
+
+#### `proj_random.py`
+- **Description**: PySpark script implementing **random sampling**.
+- **Execution**: 
+  1. Run `spark-submit proj_random.py`.
+  2. This script does not have a GUI and will output the results directly to the terminal.
+
+---
+
+## 🧾 Static Analysis
+
+#### `static.py`
+- **Description**: PySpark script for static data analysis.
+- **Execution**: 
+  1. Run `spark-submit static.py`.
+
+---
+
+## Notes
+
+- Ensure that Apache Spark and Streamlit are correctly installed in your environment.
+- Input data should be preprocessed and available as `input.csv` before executing the scripts.
+- For accurate results, always execute `input.py` **after** the corresponding PySpark or GUI script is running.
+
+---
